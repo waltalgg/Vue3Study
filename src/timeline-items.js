@@ -1,30 +1,37 @@
 import { ref } from 'vue'
-import { HOURS_IN_DAY } from '@/constants.js'
+import { HOURS_IN_DAY, MIDNIGHT_HOUR } from '@/constants.js'
 import { activities } from '@/activities.js'
+import { currentHour } from '@/functions.js'
 
 export const timelineItems = ref(generateTimelineItems())
-
-export function setTimelineItemActivity(timelineItem, activityId) {
-  timelineItem.activityId = activityId
-}
-
-export function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
-  timelineItem.activitySeconds = activitySeconds
+export const timelineItemRefs = ref([])
+export function updateTimelineItem(timelineItem, fields){
+  return Object.assign(timelineItem, fields)
 }
 
 export function resetTimelineItemActivities(activity) {
-  timelineItems.value.forEach((timelineItem) => {
-    if (timelineItem.activityId === activity.id) {
-      timelineItem.activityId = null
-      timelineItem.activitySeconds = 0
-    }
-  })
+  timelineItems.value
+    .filter((timelineItem) => hasActivity(timelineItem, activity))
+    .forEach((timelineItem) => updateTimelineItem(timelineItem,{
+      activityId: null,
+      activitySeconds: 0
+  }))
 }
 
 export function getTotalActivitySeconds(activity) {
   return timelineItems.value
-    .filter((timelineItem) => timelineItem.activityId === activity.id)
+    .filter((timelineItem) => hasActivity(timelineItem, activity))
     .reduce((totalSeconds, timelineItem) => Math.round(timelineItem.activitySeconds + totalSeconds), 0)
+}
+
+export function scrollToHour(hour, isSmooth = true) {
+  const options = { behavior: isSmooth ? 'smooth' : 'instant' } // Плавная или резкая прокрутка
+  const el = hour === MIDNIGHT_HOUR ? document.body :  timelineItemRefs.value[hour - 2].$el
+  el.scrollIntoView(options)
+}
+
+export function scrollToCurrentHour(isSmooth = true) {
+  scrollToHour(currentHour(), isSmooth)
 }
 
 function generateTimelineItems() {
@@ -33,4 +40,8 @@ function generateTimelineItems() {
     activityId: [0,1,2,3,4].includes(hour) ? activities.value[hour % 3].id : null,
     activitySeconds: [0,1,2,3,4].includes(hour) ? hour * 600 : 0
   }))
+}
+
+function hasActivity(timelineItem, activity) {
+  return timelineItem.activityId === activity.id
 }

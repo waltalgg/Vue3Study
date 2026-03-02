@@ -5,7 +5,7 @@ import { TrashIcon } from '@heroicons/vue/24/outline/index.js'
 import { BUTTON_TYPE_DANGER, PERIOD_SELECT_OPTIONS } from '@/constants.js'
 import { isActivityValid } from '@/validators.js'
 import ActivitySecondsToComplete from '@/components/ActivitySecondsToComplete.vue'
-import { deleteActivity, setActivitySecondsToComplete } from '@/activities.js'
+import { deleteActivity, updateActivity } from '@/activities.js'
 import { resetTimelineItemActivities } from '@/timeline-items.js'
 
 defineProps({
@@ -17,10 +17,9 @@ defineProps({
 })
 
 function deleteAndResetActivity(activity) {
-    resetTimelineItemActivities(activity)
-    deleteActivity(activity)
+  resetTimelineItemActivities(activity)
+  deleteActivity(activity)
 }
-
 </script>
 
 <template>
@@ -37,7 +36,7 @@ function deleteAndResetActivity(activity) {
         placeholder="hh:mm"
         :options="PERIOD_SELECT_OPTIONS"
         :selected="activity.secondsToComplete || null"
-        @select="setActivitySecondsToComplete(activity, $event)"
+        @select="updateActivity(activity, { secondsToComplete: $event || 0 })"
       />
       <ActivitySecondsToComplete v-if="activity.secondsToComplete" :activity="activity" />
     </div>

@@ -12,8 +12,8 @@ export function deleteActivity(activity) {
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
 
-export function setActivitySecondsToComplete(activity, secondsToComplete) {
-  activity.secondsToComplete = secondsToComplete || 0
+export function updateActivity(activity, fields) {
+  return Object.assign(activity, fields)
 }
 
 function generateActivities(){
