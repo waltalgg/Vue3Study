@@ -8,16 +8,16 @@ export function updateTimelineItem(timelineItem, fields){
   return Object.assign(timelineItem, fields)
 }
 
-export function resetTimelineItemActivities(activity) {
-  filterTimelineItemsByActivity(activity)
+export function resetTimelineItemActivities(timelineItems, activity) {
+  filterTimelineItemsByActivity(timelineItems, activity)
     .forEach((timelineItem) => updateTimelineItem(timelineItem,{
       activityId: null,
       activitySeconds: 0
   }))
 }
 
-export function calculateTrackedActivitySeconds(activity) {
-  return filterTimelineItemsByActivity(activity)
+export function calculateTrackedActivitySeconds(timelineItems, activity) {
+  return filterTimelineItemsByActivity(timelineItems, activity)
     .map(({ activitySeconds }) => activitySeconds)
     .reduce((total, seconds) => Math.round(total + seconds), 0)
 }
@@ -40,7 +40,7 @@ function generateTimelineItems() {
   }))
 }
 
-function filterTimelineItemsByActivity({ id }) {
-  return timelineItems.value.filter(({ activityId }) => activityId === id)
+function filterTimelineItemsByActivity(timelineItems, { id }) {
+  return timelineItems.filter(({ activityId }) => activityId === id)
 }
 
