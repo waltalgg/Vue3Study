@@ -28,7 +28,7 @@ export function stopTimer() {
 
 export function today(){
   const today = new Date()
-  today.setHours(0, 0)
+   // today.setHours(16, 0)
   return today
 }
 
