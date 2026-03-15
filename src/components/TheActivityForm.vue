@@ -6,7 +6,6 @@ import { createActivity } from '@/activities.js'
 import BaseIcon from '@/components/BaseIcon.vue'
 import { ICON_PLUS } from '@/icons.js'
 
-
 const name = ref('')
 
 async function submit() {
@@ -20,7 +19,6 @@ async function submit() {
   await nextTick()
   window.scrollTo(0, document.body.scrollHeight)
 }
-
 </script>
 
 <template>

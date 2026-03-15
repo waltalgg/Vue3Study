@@ -18,7 +18,7 @@ export const routes = {
 
 function normalizePageHash() {
   const page = window.location.hash.slice(1)
-  if(isPageValid(page)) {
+  if (isPageValid(page)) {
     return page
   }
 

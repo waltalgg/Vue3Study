@@ -11,7 +11,6 @@ const topOffset = computed(
 function getTimelineHeight() {
   return indicatorRef.value?.parentNode.getBoundingClientRect().height
 }
-
 </script>
 
 <template>

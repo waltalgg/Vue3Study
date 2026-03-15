@@ -6,7 +6,7 @@ import { syncState } from './storage'
 syncState()
 
 document.addEventListener('visibilitychange', () =>
-  syncState(document.visibilityState === 'visible')
+  syncState(document.visibilityState === 'visible'),
 )
 
 createApp(App).mount('#app')

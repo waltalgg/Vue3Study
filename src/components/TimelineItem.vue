@@ -13,7 +13,6 @@ defineProps({
     validator: isTimelineItemValid,
   },
 })
-
 </script>
 
 <template>

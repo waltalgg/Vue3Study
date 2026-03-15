@@ -8,7 +8,7 @@ import {
 
 export const now = ref(today())
 export const secondsSinceMidnightInPercentage = computed(
-  () => (HUNDRED_PERCENT * secondsSinceMidnight.value) / SECONDS_IN_DAY
+  () => (HUNDRED_PERCENT * secondsSinceMidnight.value) / SECONDS_IN_DAY,
 )
 const midnight = computed(() => new Date(now.value).setHours(0, 0, 0, 0))
 const secondsSinceMidnight = computed(() => (now.value - midnight.value) / MILLISECONDS_IN_SECOND)
@@ -16,33 +16,29 @@ const secondsSinceMidnight = computed(() => (now.value - midnight.value) / MILLI
 let currentDateTimer = null
 export function startCurrentDateTimer() {
   now.value = today()
-  currentDateTimer = setInterval(() => {
-    now.value = new Date(now.value.getTime() + MILLISECONDS_IN_SECOND)
-  }, MILLISECONDS_IN_SECOND)
+  currentDateTimer = setInterval(() => (now.value = today()), MILLISECONDS_IN_SECOND)
 }
 
 export function stopCurrentDateTimer() {
   clearInterval(currentDateTimer)
 }
 
-export function today(){
-  const today = new Date()
-   // today.setHours(16, 0)
-  return today
+export function today() {
+  return new Date()
 }
 
-export function tomorrow(){
+export function tomorrow() {
   const tomorrow = today()
   tomorrow.setDate(tomorrow.getDate() + 1)
-  tomorrow.setHours(0,0)
+  tomorrow.setHours(0, 0)
   return tomorrow
 }
 
-export function isToday(date){
+export function isToday(date) {
   return date.toDateString() === today().toDateString()
 }
 
-export function endOfHour(date){
+export function endOfHour(date) {
   const endOfHour = new Date(date)
   endOfHour.setTime(endOfHour.getTime() + SECONDS_IN_HOUR * MILLISECONDS_IN_SECOND)
   endOfHour.setMinutes(0, 0, 0)
@@ -50,11 +46,6 @@ export function endOfHour(date){
   return endOfHour
 }
 
-export function toSeconds(milliseconds){
+export function toSeconds(milliseconds) {
   return Math.round(milliseconds / MILLISECONDS_IN_SECOND)
 }
-
-
-
-
-

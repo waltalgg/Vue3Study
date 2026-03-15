@@ -16,11 +16,11 @@ const props = defineProps({
 
 const classes = computed(() => [
   'flex flex-col items-center p-2 text-xs capitalize',
-   props.navItem.page === currentPage.value ? 'bg-gray-200' : 'hover:bg-gray-200'
+  props.navItem.page === currentPage.value ? 'bg-gray-200' : 'hover:bg-gray-200',
 ])
 
 function handleClick() {
-  return (currentPage.value === PAGE_TIMELINE && props.navItem.page === PAGE_TIMELINE)
+  return currentPage.value === PAGE_TIMELINE && props.navItem.page === PAGE_TIMELINE
     ? scrollToCurrentHour(true)
     : navigate(props.navItem.page)
 }

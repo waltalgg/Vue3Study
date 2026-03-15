@@ -8,19 +8,18 @@ export const PAGE_PROGRESS = 'progress'
 export const NAV_ITEMS = [
   {
     page: PAGE_TIMELINE,
-    icon: ICON_CLOCK
+    icon: ICON_CLOCK,
   },
   {
     page: PAGE_ACTIVITIES,
-    icon: ICON_LIST_BULLET
+    icon: ICON_LIST_BULLET,
   },
   {
     page: PAGE_PROGRESS,
-    icon: ICON_CHART_BAR
+    icon: ICON_CHART_BAR,
   },
 ]
 export const HOURS_IN_DAY = 24
-
 
 export const LOW_PERCENT = 33
 export const MEDIUM_PERCENT = 50
@@ -42,7 +41,7 @@ export const BUTTON_TYPES = [
   BUTTON_TYPE_NEUTRAL,
   BUTTON_TYPE_PRIMARY,
   BUTTON_TYPE_SUCCESS,
-  BUTTON_TYPE_WARNING
+  BUTTON_TYPE_WARNING,
 ]
 
 export const PERIOD_SELECT_OPTIONS = generateSelectPeriodOptions()

@@ -8,7 +8,7 @@ import {
   XMarkIcon as XMark,
   PauseIcon as Pause,
   PlayIcon as Play,
-  PlusIcon as Plus
+  PlusIcon as Plus,
 } from '@heroicons/vue/24/outline'
 
 export const ICON_CHECK_CIRCLE = 'CheckCircle'
@@ -32,5 +32,5 @@ export const ICONS = {
   [ICON_X_MARK]: XMark,
   [ICON_PAUSE]: Pause,
   [ICON_PLAY]: Play,
-  [ICON_PLUS]: Plus
+  [ICON_PLUS]: Plus,
 }

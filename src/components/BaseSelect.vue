@@ -21,15 +21,14 @@ const props = defineProps({
 })
 
 const emit = defineEmits({
-  select: isSelectValueValid
+  select: isSelectValueValid,
 })
 
 const isNotSelected = computed(() => isUndefinedOrNull(props.selected))
 
-function select(value){
+function select(value) {
   emit('select', normalizeSelectValue(value))
 }
-
 </script>
 
 <template>

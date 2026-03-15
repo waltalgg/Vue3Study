@@ -19,11 +19,11 @@ const classes = computed(() => [
     : 'bg-gray-100 text-gray-500',
 ])
 
-const formattedHour =`${ props.hour.toString().padStart(2, 0) }:00`
+const formattedHour = `${props.hour.toString().padStart(2, 0)}:00`
 </script>
 
 <template>
-  <a href="#" :class="classes" @click.prevent="scrollToHour(hour)"> {{ formattedHour}} </a>
+  <a href="#" :class="classes" @click.prevent="scrollToHour(hour)"> {{ formattedHour }} </a>
 </template>
 
 <style scoped></style>
