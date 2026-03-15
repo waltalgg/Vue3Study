@@ -1,12 +1,15 @@
 import { createApp } from 'vue'
+import { syncState } from './storage'
+import { startCurrentDateTimer } from './time'
 import App from './App.vue'
 import './main.css'
-import { syncState } from './storage'
 
 syncState()
 
+startCurrentDateTimer()
+
 document.addEventListener('visibilitychange', () =>
-  syncState(document.visibilityState === 'visible'),
+  syncState(document.visibilityState === 'visible')
 )
 
 createApp(App).mount('#app')

@@ -1,24 +1,24 @@
 <script setup>
-import { BUTTON_TYPE_DANGER, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING } from '@/constants.js'
-import BaseButton from '@/components/BaseButton.vue'
-import { isTimelineItemValid } from '@/validators.js'
-import { formatSeconds } from '@/functions.js'
-import BaseIcon from '@/components/BaseIcon.vue'
-import { ICON_ARROW_PATH, ICON_PAUSE, ICON_PLAY } from '@/icons.js'
-import { now } from '@/time.js'
+import { BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, BUTTON_TYPE_DANGER } from '../constants'
+import { ICON_ARROW_PATH, ICON_PAUSE, ICON_PLAY } from '../icons'
+import { formatSeconds } from '../functions'
+import { isTimelineItemValid } from '../validators'
+import { activeTimelineItem } from '../timeline-items'
 import {
-  resetTimelineItemTimer,
   startTimelineItemTimer,
   stopTimelineItemTimer,
-} from '@/timeline-item-timer.js'
-import { activeTimelineItem } from '@/timeline-items.js'
+  resetTimelineItemTimer
+} from '../timeline-item-timer'
+import { now } from '../time'
+import BaseButton from './BaseButton.vue'
+import BaseIcon from './BaseIcon.vue'
 
 defineProps({
   timelineItem: {
     required: true,
     type: Object,
-    validator: isTimelineItemValid,
-  },
+    validator: isTimelineItemValid
+  }
 })
 </script>
 
@@ -37,7 +37,7 @@ defineProps({
     <BaseButton
       v-if="timelineItem === activeTimelineItem"
       :type="BUTTON_TYPE_WARNING"
-      @click="($event) => stopTimelineItemTimer"
+      @click="stopTimelineItemTimer"
     >
       <BaseIcon :name="ICON_PAUSE" />
     </BaseButton>
@@ -51,5 +51,3 @@ defineProps({
     </BaseButton>
   </div>
 </template>
-
-<style scoped></style>
